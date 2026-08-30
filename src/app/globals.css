@@ -43,19 +43,20 @@ a, button, summary { outline-offset: 4px; }
 .modern-button-dark { background: var(--ink); color: #fff; }
 .modern-button-dark:hover { background: #143d58; }
 
-.modern-hero { position: relative; isolation: isolate; overflow: hidden; background: linear-gradient(135deg, #f8faf8 0%, #f2f7f7 54%, #edf7f5 100%); }
-.hero-carousel { position: relative; overflow: hidden; }
+.modern-hero { position: relative; isolation: isolate; overflow: hidden; background: transparent; }
+.hero-carousel { position: relative; isolation: isolate; overflow: hidden; background: linear-gradient(135deg, #f8faf8 0%, #f2f7f7 54%, #edf7f5 100%); }
+.hero-carousel::before { content: ""; position: absolute; inset: 0; z-index: -2; opacity: .38; background-image: radial-gradient(circle at center, rgb(17 95 232 / 18%) 1px, transparent 1px); background-size: 28px 28px; mask-image: linear-gradient(to right, black, transparent 63%); }
 .hero-carousel-viewport { overflow: hidden; }
 .hero-carousel-track { display: flex; transition: transform .7s cubic-bezier(.22, .75, .25, 1); will-change: transform; }
 .hero-carousel-slide { width: 100%; flex: 0 0 100%; }
 .hero-carousel-slide[aria-hidden="true"] { pointer-events: none; }
-.hero-carousel-controls { display: inline-flex; margin-top: 1.45rem; align-items: center; gap: .55rem; border: 1px solid #d4e0e4; border-radius: 999px; background: rgb(255 255 255 / 72%); padding: .38rem; backdrop-filter: blur(14px); }
+.hero-carousel-controls { position: absolute; z-index: 20; top: min(33rem, calc(100vh - 6rem)); left: max(1.25rem, calc((100vw - 1440px) / 2 + 2.5rem)); display: inline-flex; align-items: center; gap: .55rem; border: 1px solid #d4e0e4; border-radius: 999px; background: rgb(255 255 255 / 78%); padding: .38rem; box-shadow: 0 18px 42px rgb(7 28 44 / 12%); backdrop-filter: blur(14px); }
 .hero-carousel-controls > button { display: inline-flex; width: 2.35rem; height: 2.35rem; align-items: center; justify-content: center; border-radius: 50%; color: #18374c; transition: background-color .18s ease, color .18s ease; }
 .hero-carousel-controls > button:hover { background: #e6f3f1; color: #076f67; }
 .hero-carousel-dots { display: flex; align-items: center; gap: .35rem; }
 .hero-carousel-dots button { width: .48rem; height: .48rem; border-radius: 999px; background: #aabcc5; transition: width .2s ease, background-color .2s ease; }
 .hero-carousel-dots button[aria-selected="true"] { width: 1.45rem; background: var(--blue); }
-.modern-hero::before { content: ""; position: absolute; inset: 0; z-index: -2; opacity: .38; background-image: radial-gradient(circle at center, rgb(17 95 232 / 18%) 1px, transparent 1px); background-size: 28px 28px; mask-image: linear-gradient(to right, black, transparent 63%); }
+.modern-hero::before { content: none; }
 .hero-orb { position: absolute; z-index: -1; border-radius: 999px; filter: blur(72px); }
 .hero-orb-one { right: 22%; top: -13rem; width: 36rem; height: 36rem; background: rgb(32 198 177 / 18%); }
 .hero-orb-two { bottom: -16rem; left: -9rem; width: 32rem; height: 32rem; background: rgb(17 95 232 / 12%); }

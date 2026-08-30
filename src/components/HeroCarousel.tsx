@@ -37,7 +37,13 @@ const slides = [
 export function HeroCarousel() {
   const [activeSlide, setActiveSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const goToSlide = useCallback((index: number) => setActiveSlide((index + slides.length) % slides.length), []);
+  const goToSlide = useCallback((index: number, preserveScroll = true) => {
+    const currentScroll = window.scrollY;
+    setActiveSlide((index + slides.length) % slides.length);
+    if (preserveScroll) {
+      requestAnimationFrame(() => window.scrollTo({ top: currentScroll, left: 0, behavior: "instant" }));
+    }
+  }, []);
 
   useEffect(() => {
     if (isPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -84,13 +90,6 @@ export function HeroCarousel() {
                         <div><strong>{slide.proof}</strong><p>Medellín · Apartadó · Montería</p></div>
                       </div>
 
-                      {isActive && <div className="hero-carousel-controls" role="group" aria-label="Controles del banner principal">
-                        <button type="button" onClick={() => goToSlide(activeSlide - 1)} aria-label="Ver banner anterior"><ArrowLeft aria-hidden="true" size={17} /></button>
-                        <div className="hero-carousel-dots" role="tablist" aria-label="Seleccionar banner">
-                          {slides.map((item, dotIndex) => <button key={item.image} type="button" role="tab" aria-selected={dotIndex === activeSlide} aria-label={`Ver banner ${dotIndex + 1}`} onClick={() => goToSlide(dotIndex)} />)}
-                        </div>
-                        <button type="button" onClick={() => goToSlide(activeSlide + 1)} aria-label="Ver siguiente banner"><ArrowRight aria-hidden="true" size={17} /></button>
-                      </div>}
                     </div>
 
                     <div className="care-hero-stage">
@@ -108,6 +107,13 @@ export function HeroCarousel() {
             );
           })}
         </div>
+      </div>
+      <div className="hero-carousel-controls" role="group" aria-label="Controles del banner principal">
+        <button type="button" onClick={() => goToSlide(activeSlide - 1)} aria-label="Ver banner anterior"><ArrowLeft aria-hidden="true" size={17} /></button>
+        <div className="hero-carousel-dots" role="tablist" aria-label="Seleccionar banner">
+          {slides.map((item, dotIndex) => <button key={item.image} type="button" role="tab" aria-selected={dotIndex === activeSlide} aria-label={`Ver banner ${dotIndex + 1}`} onClick={() => goToSlide(dotIndex)} />)}
+        </div>
+        <button type="button" onClick={() => goToSlide(activeSlide + 1)} aria-label="Ver siguiente banner"><ArrowRight aria-hidden="true" size={17} /></button>
       </div>
     </section>
   );
