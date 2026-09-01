@@ -29,7 +29,22 @@ a, button, summary { outline-offset: 4px; }
 .nav-link:hover::after { transform: scaleX(1); }
 .nav-dropdown summary::-webkit-details-marker { display: none; }
 .nav-dropdown[open] > summary { color: var(--blue); }
-.nav-dropdown[open] > summary span { transform: rotate(180deg); }
+.nav-chevron { transition: transform .18s ease; }
+.nav-dropdown[open] .nav-chevron { transform: rotate(180deg); }
+.nav-mega-panel { position: absolute; top: 3.65rem; left: 50%; display: grid; width: 34rem; grid-template-columns: 12.5rem 1fr; overflow: hidden; border: 1px solid #dce5ea; border-radius: 1.35rem; background: #fff; box-shadow: 0 24px 64px rgb(0 22 68 / 16%); transform: translateX(-34%); }
+.nav-mega-intro { display: flex; flex-direction: column; align-items: flex-start; background: linear-gradient(145deg, var(--navy), var(--blue-dark)); padding: 1.4rem; color: #fff; }
+.nav-mega-intro > svg { margin-bottom: 2.2rem; color: #8fc7ff; }
+.nav-mega-intro strong { font-size: .9rem; }
+.nav-mega-intro p { margin-top: .5rem; color: #bfd3e9; font-size: .7rem; line-height: 1.55; }
+.nav-mega-links { display: grid; gap: .35rem; padding: .7rem; }
+.nav-mega-links a { display: grid; min-height: 4.4rem; grid-template-columns: 2.4rem 1fr auto; align-items: center; gap: .7rem; border-radius: .9rem; padding: .7rem; color: #173248; transition: background-color .18s ease, color .18s ease; }
+.nav-mega-links a:hover { background: #eef5ff; color: var(--blue-dark); }
+.nav-mega-links a > span { display: inline-flex; width: 2.4rem; height: 2.4rem; align-items: center; justify-content: center; border-radius: .72rem; background: #e7f0ff; color: var(--blue); }
+.nav-mega-links a strong { font-size: .78rem; }
+.mobile-nav-group { border-top: 1px solid #e4eaed; padding: .8rem .35rem .35rem; }
+.mobile-nav-group p { padding: 0 .65rem .35rem; color: #70838f; font-size: .63rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+.mobile-nav-group a { display: flex; align-items: center; justify-content: space-between; border-radius: .75rem; padding: .7rem .65rem; color: #173248; font-size: .82rem; font-weight: 750; }
+.mobile-nav-group a:hover { background: #eef6f7; }
 .header-phone { display: flex; align-items: center; gap: .65rem; color: #173248; font-size: .78rem; font-weight: 800; line-height: 1.15; }
 .header-phone small { display: block; margin-bottom: .17rem; color: #778a98; font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .header-phone-icon { display: inline-flex; width: 2.35rem; height: 2.35rem; align-items: center; justify-content: center; border-radius: 50%; background: #e9f8f6; color: #0b776e; }

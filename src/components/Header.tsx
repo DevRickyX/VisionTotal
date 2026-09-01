@@ -1,10 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRight, CalendarDays, Menu, Phone, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Building2, CalendarDays, ChevronDown, HeartPulse, Home, MapPin, Menu, Phone, Stethoscope, UsersRound, X } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 
 import type { SiteContent } from "@/data/site-content";
 
 export function Header({ content }: { content: SiteContent }) {
+  const navIcons: Record<string, LucideIcon> = {
+    Atención: Stethoscope,
+    "Dónde estamos": MapPin,
+    Comunidad: UsersRound,
+  };
+
   return (
     <>
       <a href="#contenido-principal" className="skip-link">
@@ -20,16 +27,25 @@ export function Header({ content }: { content: SiteContent }) {
               width={180}
               height={38}
               className="h-auto w-[168px] sm:w-[182px]"
+              style={{ height: "auto" }}
               priority
             />
           </Link>
 
           <nav aria-label="Navegación principal" className="hidden items-center gap-1 xl:flex">
+            <Link href="/" className="nav-link flex items-center gap-2"><Home aria-hidden="true" size={16} />Inicio</Link>
             {content.navigation.map((item) => (
               <details key={item.href} className="nav-dropdown relative group">
-                <summary className="nav-link flex cursor-pointer list-none items-center gap-2">{item.label}<span aria-hidden="true">⌄</span></summary>
-                <div className="absolute left-0 top-12 min-w-52 rounded-2xl border border-[#dce5ea] bg-white p-2 shadow-[0_20px_50px_rgba(7,28,44,.15)]">
-                  {item.children.map((child) => <Link key={child.href} href={child.href} className="block rounded-xl px-4 py-3 text-sm font-bold text-[#173248] hover:bg-[#eef6f7]">{child.label}</Link>)}
+                <summary className="nav-link flex cursor-pointer list-none items-center gap-2">{item.label}<ChevronDown className="nav-chevron" aria-hidden="true" size={15} strokeWidth={2.2} /></summary>
+                <div className="nav-mega-panel">
+                  <div className="nav-mega-intro">
+                    {(() => { const Icon = navIcons[item.label]; return <Icon aria-hidden="true" size={23} />; })()}
+                    <strong>{item.label}</strong>
+                    <p>{item.label === "Atención" ? "Servicios y opciones para cuidar tu salud visual." : item.label === "Dónde estamos" ? "Sedes y canales para solicitar atención." : "Prevención, información y trabajo con la comunidad."}</p>
+                  </div>
+                  <div className="nav-mega-links">
+                    {item.children.map((child) => <Link key={child.href} href={child.href}><span>{child.label === "Sedes" ? <Building2 aria-hidden="true" size={19} /> : child.label === "Salud visual" ? <HeartPulse aria-hidden="true" size={19} /> : <ArrowRight aria-hidden="true" size={19} />}</span><strong>{child.label}</strong><ArrowUpRight aria-hidden="true" size={16} /></Link>)}
+                  </div>
                 </div>
               </details>
             ))}
@@ -54,9 +70,8 @@ export function Header({ content }: { content: SiteContent }) {
             </summary>
             <div className="absolute right-0 top-14 w-[min(88vw,23rem)] rounded-[22px] border border-[#dce5ea] bg-white p-3 shadow-[0_24px_70px_rgba(7,28,44,.18)]">
               <nav aria-label="Navegación móvil" className="flex flex-col">
-                {content.navigation.flatMap((item) => item.children).map((item) => (
-                  <Link key={item.href} href={item.href} className="rounded-xl px-4 py-3.5 font-bold text-[#173248] hover:bg-[#eef6f7]">{item.label}</Link>
-                ))}
+                <Link href="/" className="rounded-xl px-4 py-3.5 font-bold text-[#173248] hover:bg-[#eef6f7]">Inicio</Link>
+                {content.navigation.map((group) => <div key={group.href} className="mobile-nav-group"><p>{group.label}</p>{group.children.map((item) => <Link key={item.href} href={item.href}>{item.label}<ArrowUpRight aria-hidden="true" size={15} /></Link>)}</div>)}
                 <Link href="/solicitar-cita" className="modern-button modern-button-primary mt-2 justify-center">
                   <CalendarDays aria-hidden="true" size={18} />
                   Solicitar cita
