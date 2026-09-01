@@ -108,10 +108,10 @@ vision-total-web/
 │   ├── architecture-vision-total.png
 │   └── images/
 │       ├── logo.png
-│       ├── hero-care-vision-total-v3.png
-│       ├── hero-family-vision-total.png
 │       ├── banner-fachada-vision-total-monteria.png
 │       ├── pexels-eye-exam-6749763.jpg
+│       ├── pexels-hero-exam-5766072.jpg
+│       ├── pexels-hero-family-5621856.jpg
 │       ├── resource-about-1.jpg
 │       ├── service-service-1.jpg
 │       └── news-news-{1,2,3}.jpg

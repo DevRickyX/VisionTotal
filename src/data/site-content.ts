@@ -35,12 +35,22 @@ export const siteContent = {
     mission: "Prestamos servicios integrales de salud de mediana y alta complejidad bajo estándares de calidad y seguridad, con atención humanizada, infraestructura adecuada y un equipo idóneo comprometido con la mejora continua y la sostenibilidad de la organización.",
     vision: "Aspiramos a ser líderes en el cuidado visual y un centro de referencia nacional, reconocidos por la excelencia clínica, la innovación continua y el compromiso con el bienestar de nuestros pacientes.",
   },
-  hero: {
-    eyebrow: "Red especializada en salud visual",
-    title: "Especialistas en el cuidado de tu salud visual.",
-    description:
-      "Atención oftalmológica integral para pacientes y familias en Medellín, Apartadó y Montería.",
-  },
+  campaigns: [
+    {
+      image: "/images/pexels-hero-exam-5766072.jpg",
+      alt: "Profesional realizando un examen con lámpara de hendidura a una paciente",
+      href: "/solicitar-cita",
+      label: "Solicitar orientación para una valoración visual",
+      objectPosition: "center 46%",
+    },
+    {
+      image: "/images/pexels-hero-family-5621856.jpg",
+      alt: "Niña durante una valoración visual con lentes de prueba",
+      href: "/servicios",
+      label: "Conocer la atención visual para niñas, niños y sus familias",
+      objectPosition: "center 32%",
+    },
+  ],
   quickActions: [
     {
       title: "Solicitar una cita",

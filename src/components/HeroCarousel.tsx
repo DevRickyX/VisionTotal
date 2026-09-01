@@ -4,23 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
+import { siteContent } from "@/data/site-content";
 
-// Cada campaña es una sola pieza gráfica enlazable. Al conectar el CMS,
-// Yeraldin podrá reemplazar image, alt y href sin modificar el componente.
-const banners = [
-  {
-    image: "/images/hero-care-vision-total-v3.png",
-    alt: "Campaña de atención integral en salud visual",
-    href: "/solicitar-cita",
-    label: "Solicita orientación para cuidar tu salud visual",
-  },
-  {
-    image: "/images/hero-family-vision-total.png",
-    alt: "Campaña de cuidado visual para niñas, niños y sus familias",
-    href: "/servicios",
-    label: "Conoce la atención visual para toda la familia",
-  },
-] as const;
+// Cada campaña es una única pieza enlazable. El CMS sustituirá esta fuente
+// centralizada conservando el mismo contrato editorial y el punto de enfoque.
+const banners = siteContent.campaigns;
 
 export function HeroCarousel() {
   const [activeBanner, setActiveBanner] = useState(0);
@@ -52,9 +40,8 @@ export function HeroCarousel() {
           {banners.map((banner, index) => (
             <article key={banner.image} className="campaign-slide" aria-hidden={index !== activeBanner}>
               <Link href={banner.href} tabIndex={index === activeBanner ? 0 : -1} className="campaign-link" aria-label={banner.label}>
-                <Image src={banner.image} alt={banner.alt} fill priority={index === 0} className="object-cover" sizes="100vw" />
+                <Image src={banner.image} alt={banner.alt} fill priority={index === 0} className="object-cover" style={{ objectPosition: banner.objectPosition }} sizes="100vw" />
                 <span className="campaign-image-shade" aria-hidden="true" />
-                <span className="campaign-placeholder-note">Pieza gráfica provisional</span>
               </Link>
             </article>
           ))}

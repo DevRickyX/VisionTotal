@@ -66,10 +66,9 @@ a, button, summary { outline-offset: 4px; }
 .campaign-slide { width: 100%; flex: 0 0 100%; }
 .campaign-slide[aria-hidden="true"] { pointer-events: none; }
 .campaign-link { position: relative; display: block; width: 100%; min-height: 18rem; max-height: 29rem; aspect-ratio: 16 / 5; overflow: hidden; background: #dce9ef; }
-.campaign-link img { object-position: center 42%; transition: transform .5s ease; }
+.campaign-link img { transition: transform .5s ease; }
 .campaign-link:hover img { transform: scale(1.012); }
 .campaign-image-shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgb(0 22 68 / 18%), transparent 45%); }
-.campaign-placeholder-note { position: absolute; left: 1.2rem; bottom: 1.2rem; border: 1px solid rgb(255 255 255 / 45%); border-radius: 999px; background: rgb(0 22 68 / 62%); padding: .52rem .72rem; color: #fff; font-size: .62rem; font-weight: 700; letter-spacing: .04em; backdrop-filter: blur(16px); }
 .campaign-controls { position: absolute; z-index: 5; bottom: 1rem; left: 50%; display: inline-flex; align-items: center; gap: .5rem; border: 1px solid #d6e1e7; border-radius: 999px; background: rgb(255 255 255 / 82%); padding: .34rem; box-shadow: 0 15px 36px rgb(0 22 68 / 12%); transform: translateX(-50%); backdrop-filter: blur(18px); }
 .campaign-controls > button { display: inline-flex; width: 2.25rem; height: 2.25rem; align-items: center; justify-content: center; border-radius: 50%; color: #203c50; transition: background-color .18s ease, color .18s ease; }
 .campaign-controls > button:hover { background: #e8f1ff; color: var(--blue-dark); }
@@ -407,8 +406,6 @@ a, button, summary { outline-offset: 4px; }
   .campaign-carousel { padding: .65rem .65rem 2.75rem; }
   .campaign-viewport { border-radius: 1.25rem; }
   .campaign-link { min-height: 20rem; aspect-ratio: 4 / 5; }
-  .campaign-link img { object-position: 58% center; }
-  .campaign-placeholder-note { left: .85rem; bottom: .85rem; }
   .hero-title { font-size: clamp(3rem, 15vw, 4.2rem); }
   .modern-hero .grid { padding-top: 3.5rem; padding-bottom: 3.5rem; }
   .care-hero-stage, .care-hero-visual { min-height: 480px; }
