@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, ArrowUpRight, Building2, CalendarDays, ChevronDown, HeartPulse, Home, MapPin, Menu, Phone, Stethoscope, UsersRound, X } from "lucide-react";
+import { ArrowRight, ArrowUpRight, Building2, CalendarDays, ChevronDown, HeartPulse, Home, MapPin, Menu, Phone, ShieldCheck, Stethoscope, UsersRound, X } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 import { useEffect, useRef } from "react";
 
@@ -29,8 +29,9 @@ export function Header({ content }: { content: SiteContent }) {
 
   const navIcons: Record<string, LucideIcon> = {
     Atención: Stethoscope,
-    "Dónde estamos": MapPin,
+    Sedes: MapPin,
     Comunidad: UsersRound,
+    Institucional: Building2,
   };
 
   return (
@@ -67,10 +68,10 @@ export function Header({ content }: { content: SiteContent }) {
                   <div className="nav-mega-intro">
                     {(() => { const Icon = navIcons[item.label]; return <Icon aria-hidden="true" size={23} />; })()}
                     <strong>{item.label}</strong>
-                    <p>{item.label === "Atención" ? "Servicios y opciones para cuidar tu salud visual." : item.label === "Dónde estamos" ? "Sedes y canales para solicitar atención." : "Prevención, información y trabajo con la comunidad."}</p>
+                    <p>{item.label === "Atención" ? "Servicios y opciones para cuidar tu salud visual." : item.label === "Sedes" ? "Ubicaciones y canales para solicitar atención." : item.label === "Comunidad" ? "Prevención, información y trabajo con la comunidad." : "Quiénes somos y la información que protege a nuestros pacientes."}</p>
                   </div>
                   <div className="nav-mega-links">
-                    {item.children.map((child) => <Link key={child.href} href={child.href} onClick={closeDropdowns}><span>{child.label === "Sedes" ? <Building2 aria-hidden="true" size={19} /> : child.label === "Salud visual" ? <HeartPulse aria-hidden="true" size={19} /> : <ArrowRight aria-hidden="true" size={19} />}</span><strong>{child.label}</strong><ArrowUpRight aria-hidden="true" size={16} /></Link>)}
+                    {item.children.map((child) => <Link key={child.href} href={child.href} onClick={closeDropdowns}><span>{child.label === "Nuestras sedes" || child.label === "Nosotros" ? <Building2 aria-hidden="true" size={19} /> : child.label === "Salud visual" ? <HeartPulse aria-hidden="true" size={19} /> : child.label === "Derechos y deberes" || child.label === "Política de datos" ? <ShieldCheck aria-hidden="true" size={19} /> : <ArrowRight aria-hidden="true" size={19} />}</span><strong>{child.label}</strong><ArrowUpRight aria-hidden="true" size={16} /></Link>)}
                   </div>
                 </div>
               </details>
@@ -78,7 +79,7 @@ export function Header({ content }: { content: SiteContent }) {
           </nav>
 
           <div className="hidden items-center gap-3 lg:flex">
-            <a href={content.organization.phoneHref} className="header-phone">
+            <a href={content.organization.phoneHref} className="header-phone hidden 2xl:flex">
               <span className="header-phone-icon"><Phone aria-hidden="true" size={17} /></span>
               <span><small>Orientación</small>{content.organization.phoneDisplay}</span>
             </a>

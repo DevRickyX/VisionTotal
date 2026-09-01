@@ -101,14 +101,17 @@ Esto es una base WCAG 2.2 AA, no una certificación. Antes de publicar correspon
 vision-total-web/
 ├── docs/
 │   ├── architecture-vision-total.svg
-│   └── architecture-vision-total.png
+│   ├── architecture-vision-total.png
+│   └── IMAGE_CREDITS.md
 ├── public/
 │   ├── architecture-vision-total.svg
 │   ├── architecture-vision-total.png
 │   └── images/
 │       ├── logo.png
 │       ├── hero-care-vision-total-v3.png
+│       ├── hero-family-vision-total.png
 │       ├── banner-fachada-vision-total-monteria.png
+│       ├── pexels-eye-exam-6749763.jpg
 │       ├── resource-about-1.jpg
 │       ├── service-service-1.jpg
 │       └── news-news-{1,2,3}.jpg
@@ -117,6 +120,7 @@ vision-total-web/
 │   │   ├── brigadas/page.tsx
 │   │   ├── derechos-y-deberes/page.tsx
 │   │   ├── encuesta-satisfaccion/page.tsx
+│   │   ├── nosotros/page.tsx
 │   │   ├── particulares/page.tsx
 │   │   ├── politica-de-datos/page.tsx
 │   │   ├── pqrsf/page.tsx

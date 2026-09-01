@@ -51,7 +51,7 @@ export default async function Home() {
         <section className="visual-care-section" aria-labelledby="visual-care-title">
           <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
             <div className="visual-care-card">
-              <Image src="/images/care-family-editorial.png" alt="Profesional de salud visual orientando a una madre y su hija" fill className="object-cover" sizes="(min-width: 1024px) 80vw, 100vw" />
+              <Image src="/images/pexels-eye-exam-6749763.jpg" alt="Profesional realizando una valoración visual a una paciente pediátrica" fill className="object-cover" sizes="(min-width: 1024px) 80vw, 100vw" />
               <div className="visual-care-shade" aria-hidden="true" />
               <div className="visual-care-copy">
                 <p><Eye aria-hidden="true" size={16} />Cuidado para toda la familia</p>
@@ -59,9 +59,9 @@ export default async function Home() {
                 <Link href="/servicios" className="modern-button visual-care-button">Conocer nuestro cuidado <ArrowUpRight aria-hidden="true" size={18} /></Link>
               </div>
               <div className="visual-care-facts" aria-label="Cobertura de atención">
-                <span><strong>3</strong> ciudades</span>
-                <span><strong>6+</strong> áreas de cuidado</span>
-                <span><strong>20+</strong> años acompañando</span>
+                <span><MapPin aria-hidden="true" size={19} /><span><strong>3</strong> ciudades</span></span>
+                <span><Microscope aria-hidden="true" size={19} /><span><strong>6+</strong> áreas de cuidado</span></span>
+                <span><CalendarRange aria-hidden="true" size={19} /><span><strong>20+</strong> años acompañando</span></span>
               </div>
             </div>
           </div>

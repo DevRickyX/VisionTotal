@@ -2,111 +2,71 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowLeft, ArrowRight, ArrowUpRight, CalendarDays, Eye, HeartHandshake, ShieldCheck } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 
-const slides = [
+// Cada campaña es una sola pieza gráfica enlazable. Al conectar el CMS,
+// Yeraldin podrá reemplazar image, alt y href sin modificar el componente.
+const banners = [
   {
-    eyebrow: "Red especializada en salud visual",
-    title: "Cuidamos tu salud visual",
-    accent: "en cada etapa.",
-    description: "Atención oftalmológica integral para pacientes y familias en Medellín, Apartadó y Montería.",
-    primary: { href: "/solicitar-cita", label: "Solicitar una cita" },
-    secondary: { href: "/servicios", label: "Conocer servicios" },
     image: "/images/hero-care-vision-total-v3.png",
-    alt: "Oftalmóloga explicando los resultados de una valoración a una paciente",
-    captionLabel: "Estamos para escucharte",
-    caption: "Atención humana, clara y especializada",
+    alt: "Campaña de atención integral en salud visual",
+    href: "/solicitar-cita",
+    label: "Solicita orientación para cuidar tu salud visual",
   },
   {
-    eyebrow: "Atención para toda la familia",
-    title: "Una mirada a tiempo",
-    accent: "puede cambiarlo todo.",
-    description: "Valoraciones y acompañamiento para niñas, niños, adolescentes y sus familias.",
-    primary: { href: "/servicios", label: "Ver oftalmología pediátrica" },
-    secondary: { href: "/solicitar-cita", label: "Solicitar orientación" },
     image: "/images/hero-family-vision-total.png",
-    alt: "Optometrista realizando una valoración visual a una niña acompañada por su madre",
-    captionLabel: "Cuidado desde los primeros años",
-    caption: "Una consulta oportuna hace la diferencia",
+    alt: "Campaña de cuidado visual para niñas, niños y sus familias",
+    href: "/servicios",
+    label: "Conoce la atención visual para toda la familia",
   },
 ] as const;
 
 export function HeroCarousel() {
-  const [activeSlide, setActiveSlide] = useState(0);
+  const [activeBanner, setActiveBanner] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const goToSlide = useCallback((index: number, preserveScroll = true) => {
-    const currentScroll = window.scrollY;
-    setActiveSlide((index + slides.length) % slides.length);
-    if (preserveScroll) {
-      requestAnimationFrame(() => window.scrollTo({ top: currentScroll, left: 0, behavior: "instant" }));
-    }
+  const goToBanner = useCallback((index: number) => {
+    setActiveBanner((index + banners.length) % banners.length);
   }, []);
 
   useEffect(() => {
     if (isPaused || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const interval = window.setInterval(() => setActiveSlide((current) => (current + 1) % slides.length), 7000);
+    const interval = window.setInterval(() => setActiveBanner((current) => (current + 1) % banners.length), 7000);
     return () => window.clearInterval(interval);
   }, [isPaused]);
 
   return (
-    <section className="hero-carousel" aria-roledescription="carrusel" aria-label="Información principal de Visión Total" onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)} onFocusCapture={() => setIsPaused(true)} onBlurCapture={(event) => {
-      if (!event.currentTarget.contains(event.relatedTarget)) setIsPaused(false);
-    }}>
-      <div className="hero-carousel-viewport">
-        <div className="hero-carousel-track" style={{ transform: `translateX(-${activeSlide * 100}%)` }}>
-          {slides.map((slide, index) => {
-            const isActive = activeSlide === index;
-            const Heading = isActive ? "h1" : "p";
-
-            return (
-              <article key={slide.image} className="hero-carousel-slide" aria-hidden={!isActive} aria-label={`${index + 1} de ${slides.length}`}>
-                <div className="modern-hero">
-                  <div className="hero-orb hero-orb-one" aria-hidden="true" />
-                  <div className="hero-orb hero-orb-two" aria-hidden="true" />
-                  <div className="mx-auto grid min-h-[520px] max-w-[1440px] items-center gap-10 px-5 py-10 sm:px-8 lg:grid-cols-[.88fr_1.12fr] lg:px-10 lg:py-8">
-                    <div className="relative z-10 max-w-[660px]">
-                      <p className="modern-eyebrow"><span><Eye aria-hidden="true" size={16} /></span>{slide.eyebrow}</p>
-                      <Heading className="hero-title">{slide.title} <br /><span>{slide.accent}</span></Heading>
-                      <p className="hero-copy">{slide.description}</p>
-
-                      <div className="mt-9 flex flex-col gap-3 sm:flex-row">
-                        <Link href={slide.primary.href} tabIndex={isActive ? 0 : -1} className="modern-button modern-button-primary justify-center sm:justify-start">
-                          <CalendarDays aria-hidden="true" size={19} />
-                          {slide.primary.label}
-                          <ArrowUpRight aria-hidden="true" size={18} />
-                        </Link>
-                        <Link href={slide.secondary.href} tabIndex={isActive ? 0 : -1} className="modern-button modern-button-secondary justify-center sm:justify-start">
-                          {slide.secondary.label}
-                          <ArrowRight aria-hidden="true" size={18} />
-                        </Link>
-                      </div>
-
-                    </div>
-
-                    <div className="care-hero-stage">
-                      <div className="care-hero-aura care-hero-aura-blue" aria-hidden="true" />
-                      <div className="care-hero-aura care-hero-aura-aqua" aria-hidden="true" />
-                      <figure className="care-hero-visual">
-                        <Image src={slide.image} alt={slide.alt} fill priority={index === 0} className="object-cover" sizes="(min-width: 1024px) 54vw, 100vw" />
-                        <div className="care-hero-shade" aria-hidden="true" />
-                        <figcaption className="care-hero-caption"><span><HeartHandshake aria-hidden="true" size={22} /></span><div><small>{slide.captionLabel}</small><strong>{slide.caption}</strong></div><ShieldCheck aria-hidden="true" className="ml-auto text-[#68e3d7]" size={21} /></figcaption>
-                      </figure>
-                    </div>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+    <section
+      className="campaign-carousel"
+      aria-roledescription="carrusel"
+      aria-label="Campañas destacadas de Visión Total"
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      onFocusCapture={() => setIsPaused(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setIsPaused(false);
+      }}
+    >
+      <div className="campaign-viewport">
+        <div className="campaign-track" style={{ transform: `translateX(-${activeBanner * 100}%)` }}>
+          {banners.map((banner, index) => (
+            <article key={banner.image} className="campaign-slide" aria-hidden={index !== activeBanner}>
+              <Link href={banner.href} tabIndex={index === activeBanner ? 0 : -1} className="campaign-link" aria-label={banner.label}>
+                <Image src={banner.image} alt={banner.alt} fill priority={index === 0} className="object-cover" sizes="100vw" />
+                <span className="campaign-image-shade" aria-hidden="true" />
+                <span className="campaign-placeholder-note">Pieza gráfica provisional</span>
+              </Link>
+            </article>
+          ))}
         </div>
       </div>
-      <div className="hero-carousel-controls" role="group" aria-label="Controles del banner principal">
-        <button type="button" onClick={() => goToSlide(activeSlide - 1)} aria-label="Ver banner anterior"><ArrowLeft aria-hidden="true" size={17} /></button>
-        <div className="hero-carousel-dots" role="tablist" aria-label="Seleccionar banner">
-          {slides.map((item, dotIndex) => <button key={item.image} type="button" role="tab" aria-selected={dotIndex === activeSlide} aria-label={`Ver banner ${dotIndex + 1}`} onClick={() => goToSlide(dotIndex)} />)}
+
+      <div className="campaign-controls" role="group" aria-label="Controles del banner principal">
+        <button type="button" onClick={() => goToBanner(activeBanner - 1)} aria-label="Ver banner anterior"><ArrowLeft aria-hidden="true" size={18} /></button>
+        <div className="campaign-dots" role="tablist" aria-label="Seleccionar campaña">
+          {banners.map((banner, index) => <button key={banner.image} type="button" role="tab" aria-selected={index === activeBanner} aria-label={`Ver campaña ${index + 1}`} onClick={() => goToBanner(index)} />)}
         </div>
-        <button type="button" onClick={() => goToSlide(activeSlide + 1)} aria-label="Ver siguiente banner"><ArrowRight aria-hidden="true" size={17} /></button>
+        <button type="button" onClick={() => goToBanner(activeBanner + 1)} aria-label="Ver siguiente banner"><ArrowRight aria-hidden="true" size={18} /></button>
       </div>
     </section>
   );

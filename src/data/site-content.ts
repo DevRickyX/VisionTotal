@@ -25,9 +25,16 @@ export const siteContent = {
   },
   navigation: [
     { label: "Atención", href: "/servicios", children: [{ label: "Servicios", href: "/servicios" }, { label: "Particulares", href: "/particulares" }] },
-    { label: "Dónde estamos", href: "/sedes", children: [{ label: "Sedes", href: "/sedes" }, { label: "Solicitar cita", href: "/solicitar-cita" }] },
+    { label: "Sedes", href: "/sedes", children: [{ label: "Nuestras sedes", href: "/sedes" }, { label: "Solicitar cita", href: "/solicitar-cita" }] },
     { label: "Comunidad", href: "/salud-visual", children: [{ label: "Salud visual", href: "/salud-visual" }, { label: "Brigadas", href: "/brigadas" }] },
+    { label: "Institucional", href: "/nosotros", children: [{ label: "Nosotros", href: "/nosotros" }, { label: "Derechos y deberes", href: "/derechos-y-deberes" }, { label: "Política de datos", href: "/politica-de-datos" }] },
   ] satisfies NavigationItem[],
+  about: {
+    foundedYear: 2004,
+    introduction: "Visión Total es una institución prestadora de servicios de salud orientada al cuidado visual, con atención en Antioquia y Córdoba.",
+    mission: "Prestamos servicios integrales de salud de mediana y alta complejidad bajo estándares de calidad y seguridad, con atención humanizada, infraestructura adecuada y un equipo idóneo comprometido con la mejora continua y la sostenibilidad de la organización.",
+    vision: "Aspiramos a ser líderes en el cuidado visual y un centro de referencia nacional, reconocidos por la excelencia clínica, la innovación continua y el compromiso con el bienestar de nuestros pacientes.",
+  },
   hero: {
     eyebrow: "Red especializada en salud visual",
     title: "Especialistas en el cuidado de tu salud visual.",
