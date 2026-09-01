@@ -2,9 +2,11 @@
 
 :root {
   --ink: #071c2c;
-  --navy: #0a2b43;
-  --blue: #115fe8;
-  --blue-dark: #084ac0;
+  /* Brand tokens inferred from the supplied Visión Total logo.
+     Replace these values with the official manual when it is provided. */
+  --navy: #082b55;
+  --blue: #0b55c9;
+  --blue-dark: #073d96;
   --aqua: #20c6b1;
   --paper: #f6f8f7;
   --muted: #5e7281;
