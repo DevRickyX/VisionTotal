@@ -2,11 +2,10 @@
 
 :root {
   --ink: #071c2c;
-  /* Brand tokens inferred from the supplied Visión Total logo.
-     Replace these values with the official manual when it is provided. */
-  --navy: #082b55;
-  --blue: #0b55c9;
-  --blue-dark: #073d96;
+  /* Official RGB palette from the Visión Total corporate manual. */
+  --navy: #001644;
+  --blue: #005aca;
+  --blue-dark: #003399;
   --aqua: #20c6b1;
   --paper: #f6f8f7;
   --muted: #5e7281;
@@ -17,7 +16,7 @@
 
 * { box-sizing: border-box; }
 html { background: #fff; scroll-padding-top: 7rem; }
-body { margin: 0; background: #fff; color: var(--ink); font-family: "Manrope Variable", Manrope, ui-sans-serif, system-ui, sans-serif; font-feature-settings: "ss01", "ss02", "cv11"; text-rendering: optimizeLegibility; }
+body { margin: 0; background: #fff; color: var(--ink); font-family: "Montserrat Variable", Montserrat, ui-sans-serif, system-ui, sans-serif; font-feature-settings: "ss01", "ss02", "cv11"; text-rendering: optimizeLegibility; }
 a, button, summary { outline-offset: 4px; }
 :focus-visible { outline: 3px solid var(--focus); outline-offset: 4px; }
 

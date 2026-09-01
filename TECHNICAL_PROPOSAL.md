@@ -192,7 +192,7 @@ La primera landing no promete que una solicitud sea una cita confirmada y no pub
 
 La interfaz usa el logo real disponible en `public/images/logo.png` y concentra el color institucional en tokens CSS (`--blue`, `--blue-dark` y `--navy`) para que cualquier ajuste futuro sea global. La tipografía web actual es Manrope Variable, elegida por su lectura clara y sus pesos suficientes para construir jerarquía en español.
 
-No se encontró un PDF o archivo fuente del manual de marca en los materiales sincronizados. Los tonos actuales se tomaron del logo entregado y están marcados como provisionales; al recibir el manual oficial se deben sustituir HEX/RGB, área de reserva, tamaños mínimos y versiones permitidas del logo sin rehacer los componentes.
+El manual corporativo entregado define Montserrat como familia tipográfica y la paleta RGB oficial: azul oscuro `RGB(0, 22, 68)`, azul institucional `RGB(0, 51, 153)` y azul brillante `RGB(0, 90, 202)`. Esos valores ya están aplicados en los tokens globales. También se respeta el imagotipo + logotipo horizontal, sus versiones positiva/negativa y el área de seguridad; la variante con eslogan queda reservada para contextos donde exista espacio suficiente.
 
 1. Validación de contenido y canales con Visión Total.
 2. Diseño de esquemas y conexión a Sanity Free.
