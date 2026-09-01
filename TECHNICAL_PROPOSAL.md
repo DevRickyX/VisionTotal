@@ -188,6 +188,12 @@ La primera landing no promete que una solicitud sea una cita confirmada y no pub
 
 ## Próximas fases
 
+## Alineación con la marca
+
+La interfaz usa el logo real disponible en `public/images/logo.png` y concentra el color institucional en tokens CSS (`--blue`, `--blue-dark` y `--navy`) para que cualquier ajuste futuro sea global. La tipografía web actual es Manrope Variable, elegida por su lectura clara y sus pesos suficientes para construir jerarquía en español.
+
+No se encontró un PDF o archivo fuente del manual de marca en los materiales sincronizados. Los tonos actuales se tomaron del logo entregado y están marcados como provisionales; al recibir el manual oficial se deben sustituir HEX/RGB, área de reserva, tamaños mínimos y versiones permitidas del logo sin rehacer los componentes.
+
 1. Validación de contenido y canales con Visión Total.
 2. Diseño de esquemas y conexión a Sanity Free.
 3. Páginas de servicio, sede y prevención con rutas dinámicas.
