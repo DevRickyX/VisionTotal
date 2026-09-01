@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "@fontsource-variable/manrope";
+import "@fontsource-variable/montserrat";
 import "./globals.css";
 import { ScrollToTop } from "@/components/ScrollToTop";
 

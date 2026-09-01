@@ -26,9 +26,12 @@ export function Header({ content }: { content: SiteContent }) {
 
           <nav aria-label="Navegación principal" className="hidden items-center gap-1 xl:flex">
             {content.navigation.map((item) => (
-              <Link key={item.href} href={item.href} className="nav-link">
-                {item.label}
-              </Link>
+              <details key={item.href} className="nav-dropdown relative group">
+                <summary className="nav-link flex cursor-pointer list-none items-center gap-2">{item.label}<span aria-hidden="true">⌄</span></summary>
+                <div className="absolute left-0 top-12 min-w-52 rounded-2xl border border-[#dce5ea] bg-white p-2 shadow-[0_20px_50px_rgba(7,28,44,.15)]">
+                  {item.children.map((child) => <Link key={child.href} href={child.href} className="block rounded-xl px-4 py-3 text-sm font-bold text-[#173248] hover:bg-[#eef6f7]">{child.label}</Link>)}
+                </div>
+              </details>
             ))}
           </nav>
 
@@ -51,10 +54,8 @@ export function Header({ content }: { content: SiteContent }) {
             </summary>
             <div className="absolute right-0 top-14 w-[min(88vw,23rem)] rounded-[22px] border border-[#dce5ea] bg-white p-3 shadow-[0_24px_70px_rgba(7,28,44,.18)]">
               <nav aria-label="Navegación móvil" className="flex flex-col">
-                {content.navigation.map((item) => (
-                  <Link key={item.href} href={item.href} className="rounded-xl px-4 py-3.5 font-bold text-[#173248] hover:bg-[#eef6f7]">
-                    {item.label}
-                  </Link>
+                {content.navigation.flatMap((item) => item.children).map((item) => (
+                  <Link key={item.href} href={item.href} className="rounded-xl px-4 py-3.5 font-bold text-[#173248] hover:bg-[#eef6f7]">{item.label}</Link>
                 ))}
                 <Link href="/solicitar-cita" className="modern-button modern-button-primary mt-2 justify-center">
                   <CalendarDays aria-hidden="true" size={18} />
