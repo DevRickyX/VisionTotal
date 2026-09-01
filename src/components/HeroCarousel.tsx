@@ -8,8 +8,8 @@ import { useCallback, useEffect, useState } from "react";
 const slides = [
   {
     eyebrow: "Red especializada en salud visual",
-    title: "Especialistas en el cuidado",
-    accent: "de tu salud visual.",
+    title: "Cuidamos tu salud visual",
+    accent: "en cada etapa.",
     description: "Atención oftalmológica integral para pacientes y familias en Medellín, Apartadó y Montería.",
     primary: { href: "/solicitar-cita", label: "Solicitar una cita" },
     secondary: { href: "/servicios", label: "Conocer servicios" },
@@ -17,12 +17,11 @@ const slides = [
     alt: "Oftalmóloga explicando los resultados de una valoración a una paciente",
     captionLabel: "Estamos para escucharte",
     caption: "Atención humana, clara y especializada",
-    proof: "Cuidando la salud visual desde 2004",
   },
   {
     eyebrow: "Atención para toda la familia",
-    title: "Una mirada a tiempo puede cambiar",
-    accent: "la forma de aprender.",
+    title: "Una mirada a tiempo",
+    accent: "puede cambiarlo todo.",
     description: "Valoraciones y acompañamiento para niñas, niños, adolescentes y sus familias.",
     primary: { href: "/servicios", label: "Ver oftalmología pediátrica" },
     secondary: { href: "/solicitar-cita", label: "Solicitar orientación" },
@@ -30,7 +29,6 @@ const slides = [
     alt: "Optometrista realizando una valoración visual a una niña acompañada por su madre",
     captionLabel: "Cuidado desde los primeros años",
     caption: "Una consulta oportuna hace la diferencia",
-    proof: "Acompañamiento para cada etapa de la vida",
   },
 ] as const;
 
@@ -67,7 +65,7 @@ export function HeroCarousel() {
                 <div className="modern-hero">
                   <div className="hero-orb hero-orb-one" aria-hidden="true" />
                   <div className="hero-orb hero-orb-two" aria-hidden="true" />
-                  <div className="mx-auto grid min-h-[720px] max-w-[1440px] items-center gap-14 px-5 py-16 sm:px-8 lg:grid-cols-[.92fr_1.08fr] lg:px-10 lg:py-20">
+                  <div className="mx-auto grid min-h-[520px] max-w-[1440px] items-center gap-10 px-5 py-10 sm:px-8 lg:grid-cols-[.88fr_1.12fr] lg:px-10 lg:py-8">
                     <div className="relative z-10 max-w-[660px]">
                       <p className="modern-eyebrow"><span><Eye aria-hidden="true" size={16} /></span>{slide.eyebrow}</p>
                       <Heading className="hero-title">{slide.title} <br /><span>{slide.accent}</span></Heading>
@@ -83,11 +81,6 @@ export function HeroCarousel() {
                           {slide.secondary.label}
                           <ArrowRight aria-hidden="true" size={18} />
                         </Link>
-                      </div>
-
-                      <div className="hero-proof">
-                        <div className="hero-proof-mark" aria-hidden="true"><span>M</span><span>A</span><span>M</span></div>
-                        <div><strong>{slide.proof}</strong><p>Medellín · Apartadó · Montería</p></div>
                       </div>
 
                     </div>

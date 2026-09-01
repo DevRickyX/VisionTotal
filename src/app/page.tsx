@@ -48,6 +48,25 @@ export default async function Home() {
           </div>
         </section>
 
+        <section className="visual-care-section" aria-labelledby="visual-care-title">
+          <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
+            <div className="visual-care-card">
+              <Image src="/images/care-family-editorial.png" alt="Profesional de salud visual orientando a una madre y su hija" fill className="object-cover" sizes="(min-width: 1024px) 80vw, 100vw" />
+              <div className="visual-care-shade" aria-hidden="true" />
+              <div className="visual-care-copy">
+                <p><Eye aria-hidden="true" size={16} />Cuidado para toda la familia</p>
+                <h2 id="visual-care-title">Ver bien también es vivir con más confianza.</h2>
+                <Link href="/servicios" className="modern-button visual-care-button">Conocer nuestro cuidado <ArrowUpRight aria-hidden="true" size={18} /></Link>
+              </div>
+              <div className="visual-care-facts" aria-label="Cobertura de atención">
+                <span><strong>3</strong> ciudades</span>
+                <span><strong>6+</strong> áreas de cuidado</span>
+                <span><strong>20+</strong> años acompañando</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <section className="section-modern bg-[#f6f8f7]" aria-labelledby="sedes-title">
           <div className="mx-auto max-w-[1320px] px-5 sm:px-8">
             <div className="section-modern-heading">

@@ -1,11 +1,32 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, ArrowUpRight, Building2, CalendarDays, ChevronDown, HeartPulse, Home, MapPin, Menu, Phone, Stethoscope, UsersRound, X } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
+import { useEffect, useRef } from "react";
 
 import type { SiteContent } from "@/data/site-content";
 
 export function Header({ content }: { content: SiteContent }) {
+  const navigationRef = useRef<HTMLElement>(null);
+  const closeDropdowns = () => navigationRef.current?.querySelectorAll("details[open]").forEach((menu) => menu.removeAttribute("open"));
+
+  useEffect(() => {
+    const handleOutsideClick = (event: PointerEvent) => {
+      if (!navigationRef.current?.contains(event.target as Node)) closeDropdowns();
+    };
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") closeDropdowns();
+    };
+    document.addEventListener("pointerdown", handleOutsideClick);
+    document.addEventListener("keydown", handleEscape);
+    return () => {
+      document.removeEventListener("pointerdown", handleOutsideClick);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, []);
+
   const navIcons: Record<string, LucideIcon> = {
     Atención: Stethoscope,
     "Dónde estamos": MapPin,
@@ -32,10 +53,15 @@ export function Header({ content }: { content: SiteContent }) {
             />
           </Link>
 
-          <nav aria-label="Navegación principal" className="hidden items-center gap-1 xl:flex">
+          <nav ref={navigationRef} aria-label="Navegación principal" className="hidden items-center gap-1 xl:flex">
             <Link href="/" className="nav-link flex items-center gap-2"><Home aria-hidden="true" size={16} />Inicio</Link>
             {content.navigation.map((item) => (
-              <details key={item.href} className="nav-dropdown relative group">
+              <details key={item.href} className="nav-dropdown relative group" onToggle={(event) => {
+                if (!event.currentTarget.open) return;
+                navigationRef.current?.querySelectorAll("details[open]").forEach((menu) => {
+                  if (menu !== event.currentTarget) menu.removeAttribute("open");
+                });
+              }}>
                 <summary className="nav-link flex cursor-pointer list-none items-center gap-2">{item.label}<ChevronDown className="nav-chevron" aria-hidden="true" size={15} strokeWidth={2.2} /></summary>
                 <div className="nav-mega-panel">
                   <div className="nav-mega-intro">
@@ -44,7 +70,7 @@ export function Header({ content }: { content: SiteContent }) {
                     <p>{item.label === "Atención" ? "Servicios y opciones para cuidar tu salud visual." : item.label === "Dónde estamos" ? "Sedes y canales para solicitar atención." : "Prevención, información y trabajo con la comunidad."}</p>
                   </div>
                   <div className="nav-mega-links">
-                    {item.children.map((child) => <Link key={child.href} href={child.href}><span>{child.label === "Sedes" ? <Building2 aria-hidden="true" size={19} /> : child.label === "Salud visual" ? <HeartPulse aria-hidden="true" size={19} /> : <ArrowRight aria-hidden="true" size={19} />}</span><strong>{child.label}</strong><ArrowUpRight aria-hidden="true" size={16} /></Link>)}
+                    {item.children.map((child) => <Link key={child.href} href={child.href} onClick={closeDropdowns}><span>{child.label === "Sedes" ? <Building2 aria-hidden="true" size={19} /> : child.label === "Salud visual" ? <HeartPulse aria-hidden="true" size={19} /> : <ArrowRight aria-hidden="true" size={19} />}</span><strong>{child.label}</strong><ArrowUpRight aria-hidden="true" size={16} /></Link>)}
                   </div>
                 </div>
               </details>
