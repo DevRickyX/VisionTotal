@@ -27,6 +27,9 @@ a, button, summary { outline-offset: 4px; }
 .nav-link::after { content: ""; position: absolute; right: .8rem; bottom: .38rem; left: .8rem; height: 2px; transform: scaleX(0); background: var(--aqua); transform-origin: left; transition: transform .18s ease; }
 .nav-link:hover { color: var(--ink); }
 .nav-link:hover::after { transform: scaleX(1); }
+.nav-dropdown summary::-webkit-details-marker { display: none; }
+.nav-dropdown[open] > summary { color: var(--blue); }
+.nav-dropdown[open] > summary span { transform: rotate(180deg); }
 .header-phone { display: flex; align-items: center; gap: .65rem; color: #173248; font-size: .78rem; font-weight: 800; line-height: 1.15; }
 .header-phone small { display: block; margin-bottom: .17rem; color: #778a98; font-size: .62rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
 .header-phone-icon { display: inline-flex; width: 2.35rem; height: 2.35rem; align-items: center; justify-content: center; border-radius: 50%; background: #e9f8f6; color: #0b776e; }

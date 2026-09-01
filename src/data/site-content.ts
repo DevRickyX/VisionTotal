@@ -12,6 +12,8 @@ export type Service = {
   icon: "eye" | "glasses" | "activity" | "scan" | "baby" | "heart";
 };
 
+export type NavigationItem = { label: string; href: string; children: { label: string; href: string }[] };
+
 export const siteContent = {
   organization: {
     name: "Visión Total",
@@ -22,12 +24,10 @@ export const siteContent = {
     schedule: "Lunes a viernes · 7:00 a. m. a 6:00 p. m.",
   },
   navigation: [
-    { label: "Servicios", href: "/servicios" },
-    { label: "Sedes", href: "/sedes" },
-    { label: "Particulares", href: "/particulares" },
-    { label: "Brigadas", href: "/brigadas" },
-    { label: "Salud visual", href: "/salud-visual" },
-  ],
+    { label: "Atención", href: "/servicios", children: [{ label: "Servicios", href: "/servicios" }, { label: "Particulares", href: "/particulares" }] },
+    { label: "Dónde estamos", href: "/sedes", children: [{ label: "Sedes", href: "/sedes" }, { label: "Solicitar cita", href: "/solicitar-cita" }] },
+    { label: "Comunidad", href: "/salud-visual", children: [{ label: "Salud visual", href: "/salud-visual" }, { label: "Brigadas", href: "/brigadas" }] },
+  ] satisfies NavigationItem[],
   hero: {
     eyebrow: "Red especializada en salud visual",
     title: "Especialistas en el cuidado de tu salud visual.",
